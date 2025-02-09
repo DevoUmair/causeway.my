@@ -273,4 +273,5 @@ const processPayment = asyncHandler(async (req, res) => {
 
 
 
+
 module.exports = { checkAvailabilityVehicles , checkVehiclePrice , getAllSecuirityDeposit , getAdditonalCharges , uploadFile: [upload.single('file'), uploadFile], confirmReservation , processPayment};

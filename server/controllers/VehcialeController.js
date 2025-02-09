@@ -93,4 +93,5 @@ const getAllAdditionalFeatures = asyncHandler(async (req, res) => {
     }
 });
 
+
 module.exports = { getAllVehicaleTypes , getAllVehicales , getAllVehicalesClasses , getAllVehicaleFeatures , getAllLocation , getAllAdditionalFeatures };
