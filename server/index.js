@@ -11,7 +11,6 @@ const customerRoute = require('./routers/CustomerRoute');
 const app = express();
 
 const allowedOrigins = ['http://localhost:5173', 'https://causewaymy.web.app', 'https://causeway.my' , 'https://www.causeway.my' , 'https://causewaymy.firebaseapp.com' ];
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
