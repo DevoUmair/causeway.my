@@ -25,7 +25,7 @@ import Home from './src/assets/nav/Home.png'
 import Service from './src/assets/nav/Service.png'
 
 //Bottom Bar Active Icon
-import HomeActive from './src/assets/nav/Home-Active.png'
+import HomeActive from './src/assets/nav/home-Active.png'
 import AboutActive from './src/assets/nav/About-Active.png'
 import ContactActive from './src/assets/nav/Contact-Active.png'
 import ServiceActive from './src/assets/nav/Service-Active.png'
