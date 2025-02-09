@@ -1,0 +1,31 @@
+.GalleryImg::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+  
+    background-size: cover;
+}
+
+.GalleryImg01::before{
+    background-image: url('../../../assets/causeway/causeway-02.jpeg');
+    background-position: center;
+}
+
+.GalleryImg02::before{
+    background-image:  url('../../../assets/causeway/causeway-04.jpeg');
+    background-position: center;
+}
+
+.GalleryImg03::before{
+    background-image:  url('../../../assets/causeway/causeway-03.jpeg');
+    background-position: left;
+}
+
+.GalleryImg04::before{
+    background-image:  url('../../../assets/causeway/causeway-05.jpeg');
+    background-position: center;
+}

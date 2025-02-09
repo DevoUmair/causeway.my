@@ -1,0 +1,21 @@
+.popularVehi-container {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Centers items vertically */
+}
+
+
+.custom-max-w {
+    max-width: calc(100% + 100px);
+}
+
+
+@media screen and (min-width:200px) and (max-width:500px) {
+    .popularVehi-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+    }
+    
+}

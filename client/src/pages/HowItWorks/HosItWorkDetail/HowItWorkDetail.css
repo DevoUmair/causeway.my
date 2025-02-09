@@ -1,0 +1,17 @@
+.dotted-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px; /* Increase width for a longer curve */
+  height: 150px; /* Increase height for a deeper curve */
+  border-top: 2px dotted #ccc; /* Only the top border should be dotted */
+  border-radius: 150px 150px 0 0; /* Adjust for a half-circle shape */
+  transform: translate(-50%, -50%) rotate(0deg);
+  z-index: -1;
+}
+
+.dotted-line-reverse {
+  right: 50%;
+  left: auto;
+  transform: translate(50%, -50%) rotate(180deg);
+}

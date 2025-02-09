@@ -1,0 +1,49 @@
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    width: 35%;
+    background: #fff;
+    z-index: 400;
+}
+
+.sidebar-active{
+    right: 0;
+}
+
+@media screen and (min-width:200px) and (max-width:1100px) {
+    .sidebar{
+        width: 40%;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:950px) {
+    .sidebar{
+        width: 45%;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:800px) {
+    .sidebar{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:650px) {
+    .sidebar{
+        width: 65%;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:500px) {
+    .sidebar{
+        width: 85%;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:400px) {
+    .sidebar{
+        width: 95%;
+    }
+}

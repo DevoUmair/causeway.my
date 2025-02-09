@@ -1,0 +1,47 @@
+.addi-charge-container {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Centers items vertically */
+}
+
+.res-conf-container {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center; /* Centers items horizontally */
+    align-items:flex-start; /* Centers items vertically */
+}
+
+.customer-info-container{
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Centers items vertically */
+}
+
+.customer-info-container-2{
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Centers items vertically */
+}
+
+@media screen and (min-width:200px) and (max-width:480px) { 
+    .customer-info-container{
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}  
+
+@media screen and (min-width:200px) and (max-width:380px) { 
+    .customer-info-container{
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}  

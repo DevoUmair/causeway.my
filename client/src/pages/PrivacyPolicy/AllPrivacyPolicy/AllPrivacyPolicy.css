@@ -1,0 +1,24 @@
+.active-term::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 2px;
+    background: #811311;
+}
+
+.term-detal-anim {
+    animation: termDetailAnim 0.5s ease-in-out forwards;
+}
+
+@keyframes termDetailAnim {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}

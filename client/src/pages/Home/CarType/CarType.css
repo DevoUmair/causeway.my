@@ -1,0 +1,49 @@
+.carTypeGrid-container {
+    grid-column-gap: 0rem;
+    grid-row-gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 0.4fr));
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Centers items vertically */
+}
+
+@media screen and (min-width:200px) and (max-width:740px) {
+    .carTypeGrid-container {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 0.4fr));
+    }
+    
+}
+@media screen and (min-width:200px) and (max-width:700px) {
+    .carTypeGrid-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 0.4fr));
+    }
+    
+}
+@media screen and (min-width:200px) and (max-width:660px) {
+    .carTypeGrid-container {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 0.4fr));
+    }   
+}
+
+@media screen and (min-width:200px) and (max-width:560px) {
+    .carTypeGrid-container {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 0.4fr));
+    }   
+}
+
+@media screen and (min-width:200px) and (max-width:470px) {
+    .carTypeGrid-container {
+        grid-template-columns: repeat(auto-fit, minmax(190px, 0.4fr));
+    }   
+}
+
+@media screen and (min-width:200px) and (max-width:430px) {
+    .carTypeGrid-container{
+        grid-template-columns: 1fr; /* Set child elements to take full width */
+    }
+    
+}
+
+
+
+
