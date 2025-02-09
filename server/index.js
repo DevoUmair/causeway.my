@@ -26,6 +26,9 @@ app.use(cors({
 }));
 
 // Routers
+app.get('/', (req, res) => {
+    res.send('Hello, Causeway API is working!');
+});
 app.use('/api/vehicale', vehicaleRoute);
 app.use('/api/reservation', reserationRoute);
 app.use('/api/customer', customerRoute);
