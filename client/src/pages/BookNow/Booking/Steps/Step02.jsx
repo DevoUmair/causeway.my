@@ -139,7 +139,7 @@ const Step02 = () => {
                         })
                     }
             </div>
-            <div className='flteer-vehi-container ' >
+            <div className='flteer-vehi-container' >
                         {
                             filterdAvailableVehicle?.map((data , index) => {
                                 const vehicleType = availableVehicleType?.filter((f) => f?.vehicle_class_ids.includes(data?.id))[0]?.vehicle_type
@@ -263,7 +263,7 @@ const EachVehicale = ({data , type}) => {
 
     return(
         <div className='w-full rounded-2xl custom-border overflow-hidden bg-white ' >
-            <div className='flex relative justify-between flex-col sm:flex-row' >
+            <div className='flex relative justify-between flex-col md:flex-row' >
                 <div className='basis-[100%]  xsm:basis-[40%] relative' >
                     <div className='absolute top-3 p-[7px] cursor-pointer rounded-full glass-bg glass-bg-active left-3 flex justify-center items-center z-40' >            
                         <FaEye onClick={openImageSlider} size={16} color='#fff' />
@@ -273,8 +273,8 @@ const EachVehicale = ({data , type}) => {
                     </div>
                     <img src={data?.images[0]?.public_link} className=' w-[100%]  h-full object-cover' />
                 </div>
-                <div className='px-[15px] xsm:pl-[15px] xl:pl-[30px] py-[30px] custom-max-w  basis-[100%]  xsm:basis-[60%] bg-white rounded-tl-2xl rounded-bl-2xl rounded-tr-2xl xsm:rounded-tr-none translate-x-0 translate-y-[-20px] xsm:translate-y-0 xsm:translate-x-[-20px]' >
-                    <div className='custom-border-bottom pb-[30px]' >
+                <div className='px-[15px]  py-[30px] custom-max-w  basis-[100%]  xsm:basis-[60%] bg-white rounded-tl-2xl rounded-bl-2xl rounded-tr-2xl xsm:rounded-tr-none translate-x-0 translate-y-[-20px] md:translate-y-0 md:translate-x-[-20px]' >
+                    <div className='custom-border-bottom md:pb-[30px]' >
                         <div>
                             <h3 className='font-semibold text-[20px] sm:text-[24px]' >{data?.name} <span className='text-[17px] text-ptextCM font-medium' > - {type?.label}</span> </h3>
                         </div>
@@ -333,7 +333,7 @@ const EachVehicale = ({data , type}) => {
                            } 
                         </div>
                     </div>
-                    <div className='flex justify-between mt-[20px]' >
+                    <div className='flex justify-between flex-col gap-3 sm:flex-row mt-[20px]' >
                         <div className='flex justify-start gap-2 items-end' >
                             <div>
                                 {
@@ -354,7 +354,7 @@ const EachVehicale = ({data , type}) => {
                                 }
                             </div>
                         </div>
-                        <button onClick={onClickVehicleSelect} className={`flex justify-center gap-2 items-center ${selectedVehicleBook?.vehicle_class_id == data?.id ? 'bg-green-700' : 'bg-primaryCM' } px-4 !py-[7px] rounded-lg !text-[13px] text-white  font-bold`} >
+                        <button onClick={onClickVehicleSelect} className={`flex justify-center w-[300px] h-[50px] gap-2 items-center ${selectedVehicleBook?.vehicle_class_id == data?.id ? 'bg-green-700' : 'bg-primaryCM' } px-4 !py-[7px] rounded-lg !text-[13px] text-white  font-bold`} >
                             <FaCalendarCheck />
                             {
                                 selectedVehicleBook?.vehicle_class_id == data?.id ?

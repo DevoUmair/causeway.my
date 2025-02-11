@@ -86,22 +86,22 @@ const SideBarMainLinks = ({ name , to , page}) => {
             ? (to === 'home' ? '../' : `../${to}`)
             : (to === 'home' ? './' : `./${to}`)
   
-        setPageTrans(true)
-        setMovePage(to)
-        setTimeout(() => {
-            navigate(path)
-        }, 1000)
+            setTimeout(() => {
+                navigate(path)
+            }, 300)
+        // setPageTrans(true)
+        // setMovePage(to)
     }
 
     return(
-        <p
+        <Link
             onClick={handleNavigation}
             // to={`${page !== 'home' ?  `${to === 'home' ? `../` : `../${to}`}` : `./${to === 'home' ? `./` : to }`}`} 
             className= {`${page === to ? 'text-primaryCM' : 'text-[#000]'}  hover:text-primaryCM font-semibold cursor-pointer custom-trans text-[16px] flex justify-between w-full gap-1 items-center`}
         >
             <span>{name}</span>
             <GoArrowRight />
-        </p>
+        </Link>
     )
 }
 

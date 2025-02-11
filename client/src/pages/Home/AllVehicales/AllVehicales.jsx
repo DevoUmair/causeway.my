@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import HeaderText from '../../../components/HeaderText'
 import { useCausewayMyContext } from '../../../context/CausewayMyContextProvider'
 import { useCausewayHqContext } from '../../../context/CausewayHqContextProvider'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function AllVehicales() {
     const [selectedVehiType , setSelecteVehiType] = useState("All")
@@ -22,7 +22,7 @@ function AllVehicales() {
     const {setCursorVariant , setTextCursor ,   setPageTrans , setMovePage , setOpenSerachLoader } = useCausewayMyContext()
     const {allVehicales , allVehcialeClasses , allVehcialeTypes} = useCausewayHqContext()
 
-      const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const textEnter = () => {
       setCursorVariant("Drag")
@@ -32,6 +32,7 @@ function AllVehicales() {
         setTextCursor("")
       setCursorVariant("default")
     }  
+
 
     const PrevArrow = ({onClick}) => (
         <div onClick={onClick} className='custom-border absolute bottom-0   !border-primaryCM bg-transparent hover:!border-secondaryCM hover:bg-secondaryCM cursor-pointer custom-trans text-primaryCM hover:text-black rounded-full py-[10px] px-[20px]' >
@@ -89,7 +90,6 @@ function AllVehicales() {
                 }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at))   
     
             const shuffledFillterdVehicales = shuffleVehicleClasses(filteredVehicles)
-            console.log(filteredVehicles);
     
             setAllNewVehicales(
                 shuffledFillterdVehicales    
@@ -98,8 +98,6 @@ function AllVehicales() {
                 shuffledFillterdVehicales
             )
         }
-        console.log(allVehcialeClasses);
-
     },[allVehicales])
 
 
@@ -177,10 +175,13 @@ function AllVehicales() {
                 <div className='custom-flex !justify-between items-center ' >
                     <HeaderText text={'Explore All Vehicles'} smallText={'Book With Us'} isCenter={false} />
 
-                    <div onClick={() => handleNavigation('Causeway vehicales') }  className='bg-primaryCM hidden xsm:flex basis-[30%] xsm:basis-[25%] sm:basis-[18%] md:basis-[16%] lg:basis-[14%] xl:basis-[10%] 2xl:basis-[8%] w-fit px-[15px] py-[10px] rounded-lg font-bold text-white custom-flex justify-center items-center gap-1  text-[15px] cursor-pointer' >
+                    <Link 
+                        to={'./causeway-vehicles'}
+                        // onClick={() => handleNavigation('Causeway vehicales') }  
+                        className='bg-primaryCM hidden xsm:flex basis-[30%] xsm:basis-[25%] sm:basis-[18%] md:basis-[16%] lg:basis-[14%] xl:basis-[10%] 2xl:basis-[8%] w-fit px-[15px] py-[10px] rounded-lg font-bold text-white custom-flex justify-center items-center gap-1  text-[15px] cursor-pointer' >
                         <span className='font-semibold' >View All</span>
                         <MdOutlineArrowOutward />
-                    </div>
+                    </Link>
                 </div>
 
                 <div className='mt-[30px] custom-border-bottom w-full custom-flex justify-start gap-8' >
@@ -204,7 +205,7 @@ function AllVehicales() {
                                 {
                                     newVehicalesFillterd?.map((data , index) => (
                                         <div key={index} className='px-[4px]' onMouseEnter={textEnter} onMouseLeave={textLeave} >
-                                            <EachVehicale data={data} type='New Cars' />
+                                            <EachVehicale data={data} index={index} type={selectedVehiType} />
                                         </div>
                                     ))
                                 }
@@ -216,7 +217,7 @@ function AllVehicales() {
                                 {
                                     newVehicalesFillterd?.map((data , index) => (
                                         <div key={index} onMouseEnter={textEnter} onMouseLeave={textLeave} >
-                                            <EachVehicale data={data} type='New Cars' />
+                                            <EachVehicale data={data} index={index} type={selectedVehiType} />
                                         </div>
                                     ))
                                 }
@@ -235,13 +236,20 @@ function AllVehicales() {
   )
 }
 
-const EachVehicale = ({data , type}) => {
+const EachVehicale = ({data , index , type}) => {
     const [vehiPrice , setVehiPrice] = useState("")
     const [vehicaleClassData , setVehicaleClassData] = useState({})
     const { allVehcialeClasses , allVehicales , referenceVehicles} = useCausewayHqContext() 
     const {setSliderImageList , setImageSliderStatus} = useCausewayMyContext()
+    const [selectedImage , setSelectedImage] = useState()
+
 
     useEffect(() => {
+        const images = data?.vehicle_class?.images || [];
+        const selectedImage = images.length > 0 ? images[index % images.length] : null;
+
+        setSelectedImage(selectedImage)
+
         const vehicaleClass = allVehcialeClasses?.filter((vc) => vc?.id === data?.vehicle_class_id)[0] 
         const vehicPriceVehic = referenceVehicles?.filter((vc) => vc?.vehicle_class_id === data?.vehicle_class_id)[0] 
         
@@ -274,14 +282,20 @@ const EachVehicale = ({data , type}) => {
                     {/* <FaBookmark size={16} color='#fff'  /> */}
                     <FaEye onClick={openImageSlider} size={16} color='#fff' />
                 </div>
-                <div className={`absolute top-3 px-[16px] py-[8px] rounded-full ${type === 'New Cars' && 'bg-blue-700' } ${type === 'In Stock' && 'bg-green-700' } ${type === 'Used Cars' && 'bg-pink-700' } right-3 flex justify-center items-center z-40`} >
-                    <p className='font-semibold text-white text-[13px]' >{data?.vehicle_type?.label}</p>
-                </div>
-                <img src={data?.vehicle_class?.images[0]?.public_link} className='object-cover w-full h-full' />
+
+                {
+                    data?.vehicle_type && 
+                    (
+                        <div className={`absolute top-3 px-[16px] py-[8px] rounded-full bg-blue-700 right-3 flex justify-center items-center z-40`} >
+                            <p className='font-semibold text-white text-[13px]' >{data?.vehicle_type?.label}</p>
+                        </div>
+                    )
+                }
+                <img src={selectedImage?.public_link} className='object-cover w-full h-full' />
             </div>
             <div className='px-[15px] sm:px-[25px]' >
                 <div className='py-[20px] custom-border-bottom' >
-                        <h3 className='font-semibold text-[19px]' >{data?.label}</h3>
+                        <h3 className='font-semibold text-[19px]' >{data?.label?.split('-')[0]}</h3>
                         <p className='text-[13px] text-grayDarkCM font-normal' >{vehicaleClassData?.name} - {data?.vehicle_type?.label}</p>
                 </div>
                 <div className='py-[18px] custom-border-bottom custom-flex gap-2 justify-between' >

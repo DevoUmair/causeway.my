@@ -49,6 +49,8 @@ import { MdOutlineColorLens, MdOutlineRadio } from 'react-icons/md'
 import { IoIosSearch } from 'react-icons/io'
 import { RxCross1 } from 'react-icons/rx'
 import { Oval } from 'react-loader-spinner'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import empty from '../../../../src/assets/svgs/empty.svg'
 
 function VehicleFleet() {
    const [newVehicales , setAllNewVehicales] = useState([]) 
@@ -57,20 +59,53 @@ function VehicleFleet() {
    const [paginationNumberList , setPaginationNumberList] = useState([])
    const [currentPaage , setCurrentPage] = useState(0)
    const [newVehicalesFillterd , setNewVehicalesFillterd] = useState([])
-   const {allVehicales , allVehcialeTypes , additionalFeaturesList , allVehcialeClasses , referenceVehicles} = useCausewayHqContext()
+   const {allVehicales , allVehcialeTypes , additionalFeaturesList , allVehcialeClasses , referenceVehicles , filterCartype , setFilterCarType} = useCausewayHqContext()
    const [openItem, setOpenItem] = useState(1);
    const {setOpenSerachLoader , vehicaleFillterStatus, setVehicaleFillterStatus , setOpenBg , openSerachLoader } = useCausewayMyContext()
  
    const [filterpriceRage , setFilterPriceRage] = useState([150 , 700])
-   const [filterCartype , setFilterCarType] = useState([])
    const [filterFeature , setFilterFeature] = useState([])
 
+   const [searchParams] = useSearchParams();
+   const navigate = useNavigate();
+
+   useEffect(() => { 
+        if(allVehcialeTypes?.length > 0 ){
+            if (searchParams.toString()) {
+                if (searchParams.has("carType")) {
+                    const carType = searchParams.get("carType");
+                    const carTypeNum = Number(carType)
+                    const carTypeAvailbel = allVehcialeTypes?.filter((ct) => ct?.id === carTypeNum)
+
+                    if(carTypeAvailbel?.length > 0){
+                        setFilterCarType(carType ? [carTypeNum] : []);
+                    }else{
+                        navigate("/not-found");
+                    }           
+                }
+            } 
+        }
+    }, [searchParams , allVehcialeTypes]);
 
    useEffect(() =>{
-           if (allVehicales?.length > 0) {
-                emptyFilter()
-           }
-    },[allVehicales])
+        if(newVehicalesFillterd?.length === 0){
+            if (allVehicales?.length > 0) {
+                const filteredVehicles = allVehicales
+                .slice()
+                .filter(vehicle => {
+                        return (vehicle.status === "available" || vehicle.status === "rental") && vehicle?.vehicle_class?.images.length > 0;
+                }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at))   
+        
+                filteringVehicle(filteredVehicles)
+            }
+        }
+
+        if(filterCartype.length > 0){
+            if(newVehicalesFillterd?.length === 0){
+                hanldeFilter()
+            }
+        }
+    },[allVehicales , filterCartype])
 
     const emptyFilter = () => {
         setOpenSerachLoader(true)
@@ -330,7 +365,7 @@ function VehicleFleet() {
   return (
     <div className='custom-container'>
         <div className='flex justify-start gap-1 items-start flex-col mt-[70px]'>
-            <h1 className='text-[40px] font-bold'>Causeway Vehicle Fleets</h1>
+            <h1 className='text-[27px] md:text-[30px]  xl:text-[35px] [40px] font-bold'>Causeway Vehicle Fleets</h1>
             <p className='text-ptextCM text-[15px] font-medium max-w-[750px] w-full mr-auto'>
                 Do ipsum esse commodo et commodo nisi aute qui qui do non occaecat. Nulla voluptate Lorem eiusmod cillum irure ea excepteur.
             </p>
@@ -350,8 +385,8 @@ function VehicleFleet() {
                                 <AccordionTrigger>Car Type</AccordionTrigger>
                                 <AccordionContent>
                                     {
-                                        allVehcialeTypes?.map((vt) => (
-                                            <div className='mt-[22px]' >
+                                        allVehcialeTypes?.map((vt  , index) => (
+                                            <div key={index} className='mt-[22px]' >
                                                 <div className="flex items-center space-x-2">
                                                     <Checkbox checked={filterCartype.includes(vt.id)} onCheckedChange={() => handleCarTypeCheckboxChange(vt.id)} id={vt?.id} />
                                                     <Label htmlFor={vt?.id}>{vt?.label}</Label>
@@ -425,7 +460,7 @@ function VehicleFleet() {
                                 <img src={filterIcon} alt='filterIcon' className='w-[20px] h-[20px] object-contain'  />
                             </div>
                             {
-                                newVehicalesFillterd.length > 0 ? 
+                                newVehicalesFillterd.length > 0 &&
                                 (
                                     <p>
                                         Showing <span>{(paginationNumberList.findIndex((pl) => pl === currentPaage) * perPageCount) + 1}</span> to 
@@ -437,10 +472,7 @@ function VehicleFleet() {
                                         of <span> {newVehicales.length}</span> vehicles
                                     </p>
                                 )
-                                :
-                                (
-                                    <p>No Vehicle Was Found</p>
-                                )
+                                
                             }
                        </div>
                        <div className='flex justify-end gap-2 items-center flex-row-reverse sm:flex-row' >
@@ -473,14 +505,31 @@ function VehicleFleet() {
                             </div> 
                        </div>
                  </div>
-                 <div className='mt-[20px] flteer-vehi-container' >
+                 <div className='mt-[20px] ' >
                     {
-                        newVehicalesFillterd?.map((data , index) => {
-                            return(
-                                <EachPopularVehi key={index} data={data}  />
-                            )
-                        })
+                        newVehicalesFillterd?.length == 0 ?
+                        (
+                            <div className='w-full flex justify-center items-center mt-9' >
+                                <div>
+                                    <img className='w-[250px] object-contain'  src={empty} />
+                                    <h3 className='text-center mt-3 w-full text-primaryCM font-semibold' >NO VEHICLE FOUND</h3>
+                                </div>
+                            </div>
+                        )
+                        :
+                        (
+                            <div className='flteer-vehi-container' >
+                                {
+                                    newVehicalesFillterd?.map((data , index) => {
+                                        return(
+                                            <EachPopularVehi key={index} data={data} index={index}  />
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
                     }
+                    
                 </div>
                 {
                     newVehicalesFillterd.length > 0 && (
@@ -533,14 +582,20 @@ function VehicleFleet() {
   )
 }
 
-const EachPopularVehi = ({data}) => {
+const EachPopularVehi = ({data , index}) => {
     const [vehiPrice , setVehiPrice] = useState("")
     const [vehicaleClassData , setVehicaleClassData] = useState({})
     const { allVehcialeClasses , referenceVehicles} = useCausewayHqContext() 
     const {setSliderImageList , setImageSliderStatus } = useCausewayMyContext()
-    
+    const [selectedImage , setSelectedImage] = useState()
+        
 
     useEffect(() => {
+        const images = data?.vehicle_class?.images || [];
+        const selectedImage = images.length > 0 ? images[index % images.length] : null;
+    
+        setSelectedImage(selectedImage)
+
         const vehicaleClass = allVehcialeClasses?.filter((vc) => vc?.id === data?.vehicle_class_id)[0] 
         const vehicPriceVehic = referenceVehicles?.filter((vc) => vc?.vehicle_class_id === data?.vehicle_class_id)[0] 
         setVehicaleClassData(vehicaleClass)
@@ -578,12 +633,12 @@ const EachPopularVehi = ({data}) => {
                     <div className={`absolute top-3 right-9`}>
                         <img className='w-[100px] object-contain' src={logo} alt='logo' />
                     </div>
-                    <img src={data?.vehicle_class?.images[0]?.public_link} className=' w-[100%] h-full object-cover' />
+                    <img src={selectedImage?.public_link} className=' w-[100%] h-full object-cover' />
                 </div>
                 <div className='px-[15px] xsm:pl-[15px] xl:pl-[30px] py-[30px] custom-max-w  basis-[100%]  xsm:basis-[60%] bg-white rounded-tl-2xl rounded-bl-2xl rounded-tr-2xl xsm:rounded-tr-none translate-x-0 translate-y-[-20px] xsm:translate-y-0 xsm:translate-x-[-20px]' >
                     <div className='custom-border-bottom pb-[30px]' >
                         <div>
-                            <h3 className='font-semibold text-[20px] sm:text-[24px]' >{data?.label}</h3>
+                            <h3 className='font-semibold text-[20px] sm:text-[24px]' >{data?.label?.split('-')[0]}</h3>
                             <p className='text-[13px] sm:text-[14px]  text-grayDarkCM font-normal' >{vehicaleClassData?.name} - {data?.vehicle_type?.label}</p>
                         </div>
                         <div className='mt-[20px]  custom-flex gap-7 justify-start flex-wrap' >
@@ -626,10 +681,10 @@ const EachPopularVehi = ({data}) => {
                             )
                            }
                            {
-                            vehicaleClassData?.features?.map((data) => {
+                            vehicaleClassData?.features?.map((data , index) => {
                                if(data?.label === 'Automatic Transmission' || data?.label === 'Manual Transmission'){
                                     return(
-                                        <div className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
+                                        <div key={index} className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
                                             <FaCarAlt size={21} />
                                             <p className='text-[14px]' >{data?.label}</p>
                                         </div>
@@ -637,7 +692,7 @@ const EachPopularVehi = ({data}) => {
                                }
                                if(data?.label === 'Airconditioning'){
                                     return(
-                                        <div className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
+                                        <div key={index} className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
                                             <FaLinux size={21} />
                                             <p className='text-[14px]' >{data?.label}</p>
                                         </div>
@@ -645,7 +700,7 @@ const EachPopularVehi = ({data}) => {
                                }
                                if(data?.label === '4-doors' || data?.label === '5-doors'){
                                     return(
-                                        <div className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
+                                        <div key={index} className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
                                             <LucideDoorOpen size={21} />
                                             <p className='text-[14px]' >{data?.label}</p>
                                         </div>
@@ -653,7 +708,7 @@ const EachPopularVehi = ({data}) => {
                                }
                                if(data?.label === 'Power Steering'){
                                     return(
-                                        <div className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
+                                        <div key={index} className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
                                             <PiSteeringWheel size={21} />
                                             <p className='text-[14px]' >{data?.label}</p>
                                         </div>
@@ -661,7 +716,7 @@ const EachPopularVehi = ({data}) => {
                                }
                                if(data?.label === 'Radio/CD Player'){
                                     return(
-                                        <div className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
+                                        <div key={index} className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
                                             <MdOutlineRadio size={21}/>
                                             <p className='text-[14px]' >{data?.label}</p>
                                         </div>
@@ -669,7 +724,7 @@ const EachPopularVehi = ({data}) => {
                                }
                                if(data?.label === '3 Luggage'){
                                     return(
-                                        <div className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
+                                        <div key={index} className='custom-flex justify-center items-center gap-2 text-grayDarkCM flex-col' >
                                             <BsLuggage size={21} />
                                             <p className='text-[14px]' >{data?.label}</p>
                                         </div>

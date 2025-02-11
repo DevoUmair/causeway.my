@@ -268,11 +268,11 @@ input{
 }
 
 .blackBg-active{
-  z-index: 1000;
+  z-index: 700;
   opacity: 1;
   pointer-events: unset;
-  backdrop-filter: blur(10px); 
-  background: #00000096; /* Semi-transparent black background */
+  /* backdrop-filter: blur(10px);  */
+  background: #000000d7; /* Semi-transparent black background */
 }
 
 

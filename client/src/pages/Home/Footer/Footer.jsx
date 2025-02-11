@@ -68,12 +68,18 @@ function Footer({page}) {
             <div className='basis-[100%] w-full md:basis-[25%] lg:basis-[20%] xl:basis-[13%] mt-[20px] md:mt-[40px] xlg:mt-0' >
                 <h1 className='text-white text-[25px] font-semibold' >Legal Policy</h1>
                 <div className='mt-[40px] ' >
-                    <p onClick={() => handleNavigation('Terms And Condtion')}  className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center pb-2' >
+                    <Link
+                        to={`${page === 'terms-and-condition' ? './' : '../terms-and-condition'}`}
+                        // onClick={() => handleNavigation('Terms And Condtion')}  
+                        className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center pb-2' >
                         <span>Terms & Condition</span>
-                    </p>
-                    <p onClick={() => handleNavigation('Privacy Policy') }  className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center pb-2' >
+                    </Link>
+                    <Link
+                        to={`${page === 'privacy-policy' ? './' : '../privacy-policy'}`} 
+                        // onClick={() => handleNavigation('Privacy Policy') }  
+                        className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center pb-2' >
                         <span>Privacy Policy</span>
-                    </p>
+                    </Link>
                 </div>
             </div>
             <div className='basis-[100%] w-full md:basis-[30%] lg:basis-[20%] xl:basis-[13%] mt-[20px] mdmt-[40px] lg:mt-0' >
@@ -85,13 +91,15 @@ function Footer({page}) {
                     <p className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center' >
                         <span>Car Loan Calculator</span>
                     </p>
-                    <p onClick={() => handleNavigation('Causeway vehicales') } className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center' >
+                    <Link 
+                        to={`${page === 'causeway-vehicles' ? './' : '../causeway-vehicles'}`} 
+                        // onClick={() => handleNavigation('Causeway vehicales') } 
+                        className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center' >
                         <span>Causeway Vehicales</span>
-                    </p>
+                    </Link>
                     <p className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center' >
                         <span>Popular Vehicale</span>
-                    </p>
-                    
+                    </p>   
                 </div>
             </div>
             <div className='basis-[100%] w-full md:basis-[35%] xl:basis-[30%] mt-[20px] mdmt-[40px] xl:mt-0' >
@@ -154,14 +162,14 @@ const FooterMainLinks = ({icon , name , to , page}) => {
     }
 
     return(
-        <p
-             onClick={handleNavigation}
-            // to={`${page !== 'home' ?  `${to === 'home' ? `../` : `../${to}`}` : `./${to === 'home' ? `./` : to }`}`} 
+        <Link
+            //  onClick={handleNavigation}
+            to={`${page !== 'home' ?  `${to === 'home' ? `../` : `../${to}`}` : `./${to === 'home' ? `./` : to }`}`} 
             className='text-ptextCM cursor-pointer hover:text-secondaryCM custom-trans text-[16px] flex justify-start gap-1 items-center' 
         >
             {icon}
             <span>{name}</span>
-        </p>
+        </Link>
     )
 }
 

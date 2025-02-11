@@ -54,6 +54,7 @@ function CausewayHqContextProvider({children}) {
   const [conformationChecked , setConformationChecked] = useState(false)
   const [reservedReservationDetail , setReservedReservationDetail] = useState(null)
   const [payNowOpen , setPayNowOpen] = useState(false)
+  const [filterCartype , setFilterCarType] = useState([])
 
   const values = {
     allVehcialeTypes,
@@ -107,7 +108,9 @@ function CausewayHqContextProvider({children}) {
     reservedReservationDetail,
     setReservedReservationDetail,
     payNowOpen,
-    setPayNowOpen 
+    setPayNowOpen,
+    filterCartype , 
+    setFilterCarType
   }
 
   return (

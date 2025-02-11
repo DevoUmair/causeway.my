@@ -31,7 +31,7 @@ import {
 import { Button } from '../../../components/ui/button'
 import hqApi from '../../../axios/Axios'
 import { Oval } from 'react-loader-spinner'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { RxCrossCircled } from 'react-icons/rx'
 
 
@@ -454,12 +454,12 @@ const ListModel = () => {
 
     return(
         <div className='custom-flex !justify-center gap-2 mt-7 max-w-[850px] mx-auto flex-wrap ' >
-            {
-                allVehcialeTypes?.map((data , index) => {
-                    return(
+           { 
+                allVehcialeTypes
+                    ?.filter(data => data.id !== 1)
+                    .map((data, index) => (
                         <EachModel key={index} data={data} />
-                    )
-                })
+                    ))
             }
         </div>
     )
@@ -468,12 +468,12 @@ const ListModel = () => {
 const EachModel = ({data}) => {
     return(
         <div className='glass-bg basis-[48%]  sm:basis-[18%] rounded-3xl py-[12px] flex justify-center items-center cursor-pointer' >
-            <div className='custom-flex gap-2 !justify-start' >
+            <Link to={`/causeway-vehicles?carType=${data?.id}`} className='custom-flex gap-2 !justify-start' >
                 {/* <TbCarSuv className='text-white' size={25} /> */}
                 
                 <img src={data?.images[2]?.public_link} alt={data?.images[2]?.label} className='w-[35px] object-contain'  />
                 <p className='text-white font-semibold' >{data?.label}</p>
-            </div>
+            </Link>
         </div>
     )
 }
