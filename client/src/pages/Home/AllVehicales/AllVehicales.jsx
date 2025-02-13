@@ -173,7 +173,7 @@ function AllVehicales() {
         <div className='custom-container mt-[80px] ' >
 
                 <div className='custom-flex !justify-between items-center ' >
-                    <HeaderText text={'Explore All Vehicles'} smallText={'Book With Us'} isCenter={false} />
+                    <HeaderText text={'Explore All Vehicles'} smallText={'Book With Us'} isCenter={false} issmallNeed={false} />
 
                     <Link 
                         to={'./causeway-vehicles'}
@@ -184,7 +184,7 @@ function AllVehicales() {
                     </Link>
                 </div>
 
-                <div className='mt-[30px] custom-border-bottom w-full custom-flex justify-start gap-8' >
+                <div className='mt-[30px] custom-border-bottom w-full custom-flex justify-start gap-4 sm:gap-8' >
                     <p onClick={() => fillternewVehicales('All')} className={`py-[8px] font-[500] cursor-pointer text-black text-[16px] ${selectedVehiType === 'All' && 'carTypeBorderBottom'} `} >All</p>
                     {
                         allVehcialeTypes?.map((vt , index) => {

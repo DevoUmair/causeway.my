@@ -38,7 +38,7 @@ function Aboutus() {
             </div>
             <div className='basis-[100%] w-full lg:basis-[45%] xl:basis-[50%]' >
                 <div>
-                    <HeaderText text={'Your Trusted Partner In Reliable Car Rental'} smallText={'About Us'} isCenter={false} />
+                    <HeaderText text={'Your Trusted Partner In Reliable Car Rental'} smallText={'About Us'} isCenter={false} issmallNeed={false} />
                 </div>
                 <p className='mt-[25px] mb-[40px] text-[16px] text-ptextCM' >Aqestic Optio Amet A Ququam Saepe Aliquid Voluate Dicta Fuga Dolor Saerror Sed Earum A Magni Soluta Quam Minus Dolor Dolor</p>
                 <div className='mb-[40px]' >

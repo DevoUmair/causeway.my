@@ -73,7 +73,9 @@ function VehicleFleet() {
         if(allVehcialeTypes?.length > 0 ){
             if (searchParams.toString()) {
                 if (searchParams.has("carType")) {
+                    
                     const carType = searchParams.get("carType");
+                    console.log(carType);
                     const carTypeNum = Number(carType)
                     const carTypeAvailbel = allVehcialeTypes?.filter((ct) => ct?.id === carTypeNum)
 
@@ -83,7 +85,10 @@ function VehicleFleet() {
                         navigate("/not-found");
                     }           
                 }
-            } 
+            }else{
+                setFilterCarType([])
+                setFilterFeature([])
+            }
         }
     }, [searchParams , allVehcialeTypes]);
 
@@ -100,12 +105,14 @@ function VehicleFleet() {
             }
         }
 
-        if(filterCartype.length > 0){
-            if(newVehicalesFillterd?.length === 0){
-                hanldeFilter()
-            }
+        const carType = searchParams.get("carType");
+        if(carType){
+            hanldeFilter()
+            // if(newVehicalesFillterd?.length === 0){
+            //     hanldeFilter()
+            // }
         }
-    },[allVehicales , filterCartype])
+    },[allVehicales])
 
     const emptyFilter = () => {
         setOpenSerachLoader(true)
@@ -300,20 +307,42 @@ function VehicleFleet() {
                 setVehicaleFillterStatus(false)
                 setOpenBg(false)
             }else if(filterCartype.length > 0){
-                const filteredVehicles = allVehicales
-                .slice()
-                .filter(vehicle => { 
-                    const vehicaleClass = allVehcialeClasses?.filter((vc) => vc?.id === vehicle?.vehicle_class_id)[0] 
-                    const vehicPriceVehic = referenceVehicles?.filter((vc) => vc?.vehicle_class_id === vehicle?.vehicle_class_id)[0] 
-    
-                    const priceLessPrio = vehicPriceVehic?.valueWithoutTax?.amount;
-                    const pricePrio = vehicaleClass?.active_rates[0]?.price_intervals[0]?.price;
-                    const price = pricePrio === "" ? priceLessPrio : pricePrio;
-                                
-                    return( 
-                        (vehicle.status === "available" || vehicle.status === "rental")  && vehicle?.vehicle_class?.images.length > 0 && ( filterCartype.includes(vehicle?.vehicle_type_id) && isPriceInRange(price) )
-                    );
-                }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at))   
+                const carType = searchParams.get("carType");
+                const carTypeNum = Number(carType)            
+                let filteredVehicles;
+
+                if(carTypeNum){
+                    console.log(carTypeNum);
+                    filteredVehicles = allVehicales
+                    .slice()
+                    .filter(vehicle => { 
+                        const vehicaleClass = allVehcialeClasses?.filter((vc) => vc?.id === vehicle?.vehicle_class_id)[0] 
+                        const vehicPriceVehic = referenceVehicles?.filter((vc) => vc?.vehicle_class_id === vehicle?.vehicle_class_id)[0] 
+        
+                        const priceLessPrio = vehicPriceVehic?.valueWithoutTax?.amount;
+                        const pricePrio = vehicaleClass?.active_rates[0]?.price_intervals[0]?.price;
+                        const price = pricePrio === "" ? priceLessPrio : pricePrio;
+                                    
+                        return( 
+                            (vehicle.status === "available" || vehicle.status === "rental")  && vehicle?.vehicle_class?.images.length > 0 && ( carTypeNum === vehicle?.vehicle_type_id && isPriceInRange(price) )
+                        );
+                    }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) 
+                }else{
+                    filteredVehicles = allVehicales
+                    .slice()
+                    .filter(vehicle => { 
+                        const vehicaleClass = allVehcialeClasses?.filter((vc) => vc?.id === vehicle?.vehicle_class_id)[0] 
+                        const vehicPriceVehic = referenceVehicles?.filter((vc) => vc?.vehicle_class_id === vehicle?.vehicle_class_id)[0] 
+        
+                        const priceLessPrio = vehicPriceVehic?.valueWithoutTax?.amount;
+                        const pricePrio = vehicaleClass?.active_rates[0]?.price_intervals[0]?.price;
+                        const price = pricePrio === "" ? priceLessPrio : pricePrio;
+                                    
+                        return( 
+                            (vehicle.status === "available" || vehicle.status === "rental")  && vehicle?.vehicle_class?.images.length > 0 && ( filterCartype.includes(vehicle?.vehicle_type_id) && isPriceInRange(price) )
+                        );
+                    }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at))  
+                }
             
                 filteringVehicle(filteredVehicles)
                 setOpenSerachLoader(false)

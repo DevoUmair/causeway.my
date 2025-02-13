@@ -7,6 +7,8 @@ import brand04 from '../../../assets/mostWanted/brand-4.png'
 import brand05 from '../../../assets/mostWanted/brand-5.png'
 import brand06 from '../../../assets/mostWanted/brand-6.png'
 import HeaderText from '../../../components/HeaderText'
+import { Link } from 'react-router-dom'
+import { MdOutlineArrowOutward } from 'react-icons/md'
 
 const allBrands = [
     {
@@ -38,9 +40,9 @@ const allBrands = [
 function MostWanted({page}) {
     
   return (
-    <div className={`bg-lightBgCm ${page !== 'about' ? 'rounded-tr-[80px] md:rounded-tr-[100px] rounded-tl-[80px]  md:rounded-tl-[100px] translate-y-[-100px] mb-[-100px]' : 'mt-[80px]'} z-30 relative pt-[120px] md:pt-[100px] pb-[150px]`} >
+    <div className={`bg-lightBgCm ${page !== 'about' ? 'rounded-tr-[80px] md:rounded-tr-[100px] rounded-tl-[80px]  md:rounded-tl-[100px] translate-y-[-100px] mb-[-100px]' : 'mt-[80px]'} z-30 relative pt-[120px] md:pt-[100px] pb-[80px] sm:pb-[150px]`} >
         <div className='custom-container' >
-            <HeaderText text={'Most Wanted Car Rental Brands In Malaysia'} smallText={'Explore With Us'} isCenter={false} />
+            <HeaderText text={'Most Wanted Car Rental Brands In Malaysia'} smallText={'Explore With Us'} isCenter={false} issmallNeed={false} />
             <div className='mt-[40px] mostwantedGrid-container  w-full' >
                 {
                     allBrands?.map((eachBrand , index) => (
@@ -48,7 +50,17 @@ function MostWanted({page}) {
                     ))
                 }
             </div>
+            <div className='flex sm:hidden justify-end items-end mt-[40px] mr-3 w-full' >
+                <Link 
+                    to={'./causeway-vehicles'}
+                    // onClick={() => handleNavigation('Causeway vehicales') }  
+                    className='bg-primaryCM  w-[150px]  flex   px-[15px] py-[15px] rounded-lg font-bold text-white custom-flex justify-center items-center gap-1  text-[15px] cursor-pointer' >
+                    <span className='font-semibold' >View All</span>
+                    <MdOutlineArrowOutward />
+                </Link>
+            </div>
         </div>
+
     </div>
   )
 }

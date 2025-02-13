@@ -3,7 +3,7 @@ import { useCausewayMyContext } from '../context/CausewayMyContextProvider'
 import logoC from '../assets/logo/logoC.png'
 import {easeIn, motion, useAnimation, useInView} from 'framer-motion'
 
-function HeaderText({text , smallText , isCenter}) {
+function HeaderText({text , smallText , isCenter , issmallNeed=true}) {
   const {setCursorVariant} = useCausewayMyContext()
 
   const textEnter = () => {
@@ -36,26 +36,33 @@ function HeaderText({text , smallText , isCenter}) {
       slideControlsCenter.start("visible")
     }
   },[isInViewCeneter])
+
+  // console.log();
   
   if(isCenter){
     return(
       <div ref={refCenter} className='custom-container w-full text-center flex justify-center items-center flex-col' >
         <div className='w-fit  overflow-hidden relative' >
-          <motion.p 
-            variants={{
-              hidden: {opacity : 0 , y:75},
-              visible: {opacity : 1 , y:0}
-            }}
-            initial="hidden"
-            animate={mainControlsCenter}
-            transition={{
-              duration:0.5,
-              delay:0.25
-            }}
-            className='text-primaryCM text-center w-fit font-bold text-[16px] custom-flex justify-center items-center gap-2' >
-            <img className='w-[22px] object-contain' src={logoC} alt='logoc' />
-            <span>{smallText}</span>
-          </motion.p>
+          {
+            issmallNeed &&
+            (
+              <motion.p 
+                variants={{
+                  hidden: {opacity : 0 , y:75},
+                  visible: {opacity : 1 , y:0}
+                }}
+                initial="hidden"
+                animate={mainControlsCenter}
+                transition={{
+                  duration:0.5,
+                  delay:0.25
+                }}
+                className='text-primaryCM text-center w-fit font-bold text-[16px] custom-flex justify-center items-center gap-2' >
+                <img className='w-[22px] object-contain' src={logoC} alt='logoc' />
+                <span>{smallText}</span>
+              </motion.p>
+            )
+          }
           <motion.div
             variants={{
               hidden:{left : 0},
@@ -124,21 +131,26 @@ function HeaderText({text , smallText , isCenter}) {
   return (
     <div ref={ref} className='w-fit  overflow-hidden relative'  >
       <div className='w-fit  overflow-hidden relative'  >
-        <motion.p 
-          variants={{
-            hidden: {opacity : 0 , y:75},
-            visible: {opacity : 1 , y:0}
-          }}
-          initial="hidden"
-          animate={mainControls}
-          transition={{
-            duration:0.5,
-            delay:0.25
-          }}
-          className='text-primaryCM font-bold text-[16px] custom-flex justify-start gap-2' >
-          <img className='w-[22px] object-contain' src={logoC} alt='logoc' />
-          <span>{smallText}</span>
-        </motion.p>
+        {
+          issmallNeed &&
+          (
+            <motion.p 
+              variants={{
+                hidden: {opacity : 0 , y:75},
+                visible: {opacity : 1 , y:0}
+              }}
+              initial="hidden"
+              animate={mainControls}
+              transition={{
+                duration:0.5,
+                delay:0.25
+              }}
+              className='text-primaryCM font-bold text-[16px] custom-flex justify-start gap-2' >
+              <img className='w-[22px] object-contain' src={logoC} alt='logoc' />
+              <span>{smallText}</span>
+            </motion.p>
+          )
+        }
         <motion.div
             variants={{
               hidden:{left : 0},

@@ -4,7 +4,7 @@ import React from 'react'
 import { FaRegCalendarAlt } from 'react-icons/fa'
 import { IoArrowForwardSharp } from 'react-icons/io5'
 import { Allblogs, allPages } from '../../../../causewayDb'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCausewayMyContext } from '../../../context/CausewayMyContextProvider'
 
 function Blogs() {
@@ -38,9 +38,9 @@ function Blogs() {
                       <span className='font-semibold' >{Allblogs[0].date}</span>
                     </p>
                     <h3 className='text-[21px] lg:text-[23px] text-white font-bold leading-[28px] my-3 max-w-[500px]' >{Allblogs[0].title}</h3>
-                    <div className='outer-btn cursor-pointer' onClick={() => handleNavigation(Allblogs[0])} >
+                    <Link Link to={`blog/${Allblogs[0]?.to}`}  className='outer-btn cursor-pointer' >
                       <IoArrowForwardSharp />
-                    </div>
+                    </Link>
                 </div>
                 <div className='bannerImageLinear' ></div>
                 <img src={Allblogs[0].blogBanner} className='w-full  object-cover h-[350px] md:h-[420px] lg:h-[490px]' />
@@ -91,7 +91,7 @@ const EachBlog = ({isLast , item}) =>{
                   <div className='outer-btn-2' >
                     <IoArrowForwardSharp />
                   </div>
-                  <p onClick={handleNavigation} className='text-[14px] cursor-pointer sm:text-[16px] font-semibold text-primaryCM ' >Read Story</p>
+                  <Link to={`blog/${item?.to}`} className='text-[14px] cursor-pointer sm:text-[16px] font-semibold text-primaryCM ' >Read Story</Link>
               </div>
           </div>
     </div>
