@@ -16,6 +16,7 @@ import ConformBooking from './pages/ConformBooking/index';
 import { useCausewayMyContext } from './context/CausewayMyContextProvider';
 import PageTrans from './components/PageTrans/PageTrans';
 import NotFound from './components/NotFound/NotFound';
+import VersionChecker from './components/VersionChecker/VersionChecker';
 
 function App() {
   const { loaderActive, activePageTrans } = useCausewayMyContext();
@@ -28,6 +29,7 @@ function App() {
   return (
     <>
       {(!loaderActive && activePageTrans) && <PageTrans />} 
+      <VersionChecker />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

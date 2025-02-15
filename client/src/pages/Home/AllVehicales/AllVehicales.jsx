@@ -198,33 +198,48 @@ function AllVehicales() {
                 </div>
 
                 <div className='mt-[30px] relative'  >
-                    {
-                        newVehicalesFillterd?.length > 4 ? 
-                        (
-                            <Slider   className='pb-12' {...settings}>
-                                {
-                                    newVehicalesFillterd?.map((data , index) => (
-                                        <div key={index} className='px-[4px]' onMouseEnter={textEnter} onMouseLeave={textLeave} >
-                                            <EachVehicale data={data} index={index} type={selectedVehiType} />
-                                        </div>
-                                    ))
-                                }
-                            </Slider>
-                        )
-                        :
-                        (
-                            <div className='allVehiGrid-container' >
-                                {
-                                    newVehicalesFillterd?.map((data , index) => (
-                                        <div key={index} onMouseEnter={textEnter} onMouseLeave={textLeave} >
-                                            <EachVehicale data={data} index={index} type={selectedVehiType} />
-                                        </div>
-                                    ))
-                                }
-                            </div>
+                    <div>
+                        {
+                            newVehicalesFillterd.length > 0 ?
+                            (
+                                <div>
+                                    {
+                                        newVehicalesFillterd?.length > 4 ? 
+                                        (
+                                            <Slider   className='pb-12' {...settings}>
+                                                {
+                                                    newVehicalesFillterd?.map((data , index) => (
+                                                        <div key={index} className='px-[4px]' onMouseEnter={textEnter} onMouseLeave={textLeave} >
+                                                            <EachVehicale data={data} index={index} type={selectedVehiType} />
+                                                        </div>
+                                                    ))
+                                                }
+                                            </Slider>
+                                        )
+                                        :
+                                        (
+                                            <div className='allVehiGrid-container' >
+                                                {
+                                                    newVehicalesFillterd?.map((data , index) => (
+                                                        <div key={index} onMouseEnter={textEnter} onMouseLeave={textLeave} >
+                                                            <EachVehicale data={data} index={index} type={selectedVehiType} />
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
 
-                        )
-                    }
+                                        )
+                                    }
+                                </div>
+                            )
+                            :
+                            (
+                                <div>
+                                    Loading
+                                </div>
+                            )
+                        }
+                    </div>
                 </div>
 
                 {/* <div className='custom-flex justify-start gap-4 mt-[30px]' >
