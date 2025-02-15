@@ -13,6 +13,7 @@ function VersionChecker() {
   const [data , setData] = useState({})
 
   const checkForUpdate = async () => {
+    console.log("checked");
     try {
       const response = await hqApi.get("/version"); // Get version from backend
       const data = response.data;
@@ -22,6 +23,8 @@ function VersionChecker() {
       if (storedVersion && storedVersion !== data.version) {
         setShowUpdatePopup(true); // Show update popup
       }
+
+      localStorage.setItem("appVersion", data.version); 
      
     } catch (error) {
       console.error("Error checking app version:", error);
@@ -33,7 +36,7 @@ function VersionChecker() {
   }, []);
 
   const handleUpdate = () => {
-    localStorage.setItem("appVersion", data.version); 
+
     // Clear local storage
     localStorage.clear();
 
@@ -56,7 +59,7 @@ function VersionChecker() {
   };
 
   return (
-    <Dialog open={showUpdatePopup} onOpenChange={setShowUpdatePopup}>
+    <Dialog open={showUpdatePopup} >
       <DialogContent>
         <DialogHeader>
           <DialogTitle>New Version Available</DialogTitle>
