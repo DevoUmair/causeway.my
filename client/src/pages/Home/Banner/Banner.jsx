@@ -36,7 +36,7 @@ import { RxCrossCircled } from 'react-icons/rx'
 
 
 function Banner() {
-    const [sliderNum , setSliderNum] = useState(1);
+    // const [sliderNum , setSliderNum] = useState(1);
     const {setCursorVariant ,  setOpenSerachLoader} = useCausewayMyContext()
 
     const textEnter = () => {
@@ -46,22 +46,28 @@ function Banner() {
         setCursorVariant("default")
     }  
 
-    useEffect(() => {
-      const timeoutId = setTimeout(() => {
-        if (sliderNum === 3) {
-          setSliderNum(1);
-        } else {
-          setSliderNum(sliderNum + 1);
-        }
-      }, 4500);
+    // useEffect(() => {
+    //   const timeoutId = setTimeout(() => {
+    //     if (sliderNum === 3) {
+    //       setSliderNum(1);
+    //     } else {
+    //       setSliderNum(sliderNum + 1);
+    //     }
+    //   }, 4500);
   
-      return () => clearTimeout(timeoutId); 
-    }, [sliderNum]);
+    //   return () => clearTimeout(timeoutId); 
+    // }, [sliderNum]);
 
   return (
     <div className="banner-container">
         <div className='bannerImageLinear' ></div>
-        {
+            <div className='bannerImage' 
+                        style={{
+                            backgroundImage:`url(${bg01})`,
+                            animation: 'zoomAnimation 5s ease-in-out',
+                        }}
+            ></div>
+        {/* {
             sliderNum === 1 &&(
                 <div className='bannerImage' 
                     style={{
@@ -90,7 +96,7 @@ function Banner() {
                     }}
                 ></div>
             )
-        }
+        } */}
 
         
         <div className='banner-content' >

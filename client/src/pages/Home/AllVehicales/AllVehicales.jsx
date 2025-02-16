@@ -14,6 +14,7 @@ import HeaderText from '../../../components/HeaderText'
 import { useCausewayMyContext } from '../../../context/CausewayMyContextProvider'
 import { useCausewayHqContext } from '../../../context/CausewayHqContextProvider'
 import { Link, useNavigate } from 'react-router-dom'
+import { Skeleton } from '@mui/material';
 
 function AllVehicales() {
     const [selectedVehiType , setSelecteVehiType] = useState("All")
@@ -201,6 +202,7 @@ function AllVehicales() {
                     <div>
                         {
                             newVehicalesFillterd.length > 0 ?
+                            // false ?
                             (
                                 <div>
                                     {
@@ -234,9 +236,28 @@ function AllVehicales() {
                             )
                             :
                             (
-                                <div>
-                                    Loading
-                                </div>
+                                <di>
+                                    <Slider   className='pb-12' {...settings}>
+                                        <div className='px-[4px]' >
+                                             <SkeleTonContainer />
+                                        </div>
+                                        <div className='px-[4px]' >
+                                             <SkeleTonContainer />
+                                        </div>
+                                        <div className='px-[4px]' >
+                                             <SkeleTonContainer />
+                                        </div>
+                                        <div className='px-[4px]' >
+                                             <SkeleTonContainer />
+                                        </div>
+                                        <div className='px-[4px]' >
+                                             <SkeleTonContainer />
+                                        </div>
+                                        <div className='px-[4px]' >
+                                             <SkeleTonContainer />
+                                        </div>
+                                    </Slider>
+                                </di>
                             )
                         }
                     </div>
@@ -347,6 +368,38 @@ const EachVehicale = ({data , index , type}) => {
                 </div>
             </div>
         </div>
+    )
+}
+
+const SkeleTonContainer = () => {
+    return(
+      <div className='h-full rounded-3xl overflow-hidden bg-white shadow-sm' >
+         <Skeleton variant="rounded" height={150} />
+         <div className='px-[15Px] py-[25px]' >
+            <div className='custom-border-bottom pb-5' >
+                <Skeleton variant="text" sx={{ fontSize: '1.2rem' }} />
+                <Skeleton variant="text w-[70%]" sx={{ fontSize: '0.7rem' }} />
+            </div>
+            <div className='flex justify-between items-center mt-[15px] custom-border-bottom pb-5' >
+                <div className='flex justify-center items-center flex-col gap-2' >
+                        <Skeleton variant="rounded" height={20} width={20} />
+                        <Skeleton variant="text w-[50px]" sx={{ fontSize: '0.5rem' }} />
+                </div>
+                <div className='flex justify-center items-center flex-col gap-2' >
+                        <Skeleton variant="rounded" height={20} width={20} />
+                        <Skeleton variant="text w-[50px]" sx={{ fontSize: '0.5rem' }} />
+                </div>
+                <div className='flex justify-center items-center flex-col gap-2' >
+                        <Skeleton variant="rounded" height={20} width={20} />
+                        <Skeleton variant="text w-[50px]" sx={{ fontSize: '0.5rem' }} />
+                </div>
+            </div>
+            <div className='flex justify-between items-baseline mt-[25px]' >
+                    <Skeleton variant="text w-[100px]" sx={{ fontSize: '0.5rem' }} />
+                    <Skeleton variant="rounded" height={30} width={100} />
+            </div>
+         </div>
+      </div>
     )
 }
     
