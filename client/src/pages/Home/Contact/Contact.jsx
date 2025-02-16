@@ -237,7 +237,7 @@ function Contact() {
                     </p>
                 </div>
 
-                <div className='mt-[30px] w-full h-[400px] md:h-[670px] xlg:h-[590px] overflow-hidden rounded-xl' >
+                <div className='mt-[30px] w-full h-[400px] md:h-[670px] xlg:h-[560px] overflow-hidden rounded-xl' >
                     <iframe title='location' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15954.070953948065!2d103.7280105!3d1.4629912!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc718c0a45d2bebdd!2sCauseway%20Car%20Rental%20Johor%20Bahru!5e0!3m2!1sen!2slk!4v1655384040622!5m2!1sen!2slk" width="100%" height="100%" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>        

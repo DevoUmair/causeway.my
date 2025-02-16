@@ -16,13 +16,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     credentials: true,
     origin: (origin, callback) => {
+        console.log('Incoming request from origin:', origin);
+        
         if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true); // Allow the request
+            callback(null, true);
         } else {
-            callback(new Error('Not allowed by CORS')); // Reject the request
+            console.log('Blocked by CORS:', origin);
+            callback(new Error('Not allowed by CORS'));
         }
     }
 }));
+
 
 // Routers
 app.get('/', (req, res) => {
@@ -35,7 +39,7 @@ app.use('/api/vehicale', vehicaleRoute);
 app.use('/api/reservation', reserationRoute);
 app.use('/api/customer', customerRoute);
 
-const port = process.env.PORT || 5100
+const port = process.env.PORT || 5000
 
 app.listen(port, () => {
     const token = process.env.ENCODE_TOKEN;
