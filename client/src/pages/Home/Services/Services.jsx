@@ -3,6 +3,7 @@ import { sections } from '../../../../causewayDb'
 import HeaderText from '../../../components/HeaderText'
 import './Service.css'
 
+
 function Services() {
 
   return (
@@ -19,10 +20,10 @@ function Services() {
   )
 }
 
-const EachServices = ({sec}) => {
+const EachServices = ({sec , img}) => {
     return(
         <div className='rounded-2xl custom-border overflow-hidden bg-white h-[490px]' >
-            <img src='https://carento-demo.vercel.app/assets/imgs/services/services-list-1/img-1.png' alt='servi' className='h-[250px] object-cover w-full' />
+            <img src={sec?.img} alt='servi' className='h-[250px] object-cover w-full' />
             <div className='rounded-tr-2xl rounded-tl-2xl translate-y-[-30px] px-[25px] bg-white pt-[30px]' >
                 <h1 className='text-black font-bold text-[20px] mb-[20px]' >{sec?.title}</h1>
                 <p className='text-ptextCM text-[15px] font-medium' >

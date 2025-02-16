@@ -49,6 +49,11 @@ import blog02 from './src/assets/blogs/blog-03.jpg'
 import blog03 from './src/assets/blogs/blog-01.jpg'
 import blog04 from './src/assets/blogs/blog-04.jpg'
 
+//services
+import serv01 from './src/assets/services/ser-01.jpg'
+import serv02 from './src/assets/services/ser-02.jpg'
+import serv03 from './src/assets/services/ser-03.jpg'
+
 export const pages = {
     home : {
         name : 'home',
@@ -158,6 +163,7 @@ export const sections = [
     {
       id : 1,
       title: "Acceptance of Terms",
+      img : serv01,
       content: "Irure eu aute reprehenderit sunt ipsum do Lorem ea fugiat nulla cillum mollit Lorem. Eiusmod ex nostrud qui laborum et cupidatat minim aute occaecat labore duis. Occaecat consectetur anim aliquip duis ad commodo veniam officia adipisicing in.",
       items: [
         {
@@ -173,6 +179,7 @@ export const sections = [
     {
       id : 2,  
       title: "Services Provided",
+      img : serv02,
       content: "We offer a range of digital services including but not limited to social media management, content creation, and digital marketing strategy. Our services are designed to enhance your digital presence.",
       items: [
         {
@@ -188,6 +195,7 @@ export const sections = [
     {
       id : 3,
       title: "User Responsibilities",
+      img : serv03,
       content: "As a user, you are expected to use our services responsibly, respecting intellectual property, security protocols, and privacy standards.",
       items: [
         {
@@ -203,6 +211,7 @@ export const sections = [
     {
       id : 4,
       title: "Account Security",
+      img : serv01,
       content: "Account security is paramount, and we implement robust security measures to safeguard user information.",
       items: [
         {
@@ -218,6 +227,7 @@ export const sections = [
     {
       id : 5,
       title: "Payment and Fees",
+      img : serv02,
       content: "Payments for our services are due in full prior to project initiation unless otherwise specified. All fees are non-refundable unless otherwise stated.",
       items: [
         {
@@ -233,6 +243,7 @@ export const sections = [
     {
       id : 6,
       title: "Cancellation and Refunds",
+      img : serv03,
       content: "Cancellations and refunds are subject to terms that vary depending on the nature of the service. Refund requests are handled on a case-by-case basis.",
       items: [
         {
@@ -248,6 +259,7 @@ export const sections = [
     {
       id : 7,
       title: "Intellectual Property",
+      img : serv01,
       content: "All content, designs, and trademarks provided by us are protected by intellectual property laws. Unauthorized use or distribution is prohibited.",
       items: [
         {
@@ -263,6 +275,7 @@ export const sections = [
     {
       id : 8,
       title: "Limitation of Liability",
+      img : serv02,
       content: "We are not liable for any damages or losses arising from the use or inability to use our services, except as required by law.",
       items: [
         {

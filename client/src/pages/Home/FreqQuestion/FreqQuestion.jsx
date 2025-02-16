@@ -6,8 +6,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../../../components/ui/accordion"
-import frq01 from '../../../assets/freq/frew-01.jpg'
-import frq02 from '../../../assets/freq/frew-02.jpg'
+import frq01 from '../../../assets/freq/frew-03.jpg'
+import frq02 from '../../../assets/freq/frew-04.jpg'
 import vehi from '../../../assets/freq/faq-vehi.png'
 import './FreqQuestion.css'
 import Plx from "react-plx";
