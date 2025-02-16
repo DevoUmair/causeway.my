@@ -58,7 +58,7 @@ function HeaderText({text , smallText , isCenter , issmallNeed=true}) {
                   delay:0.25
                 }}
                 className='text-primaryCM text-center w-fit font-bold text-[16px] custom-flex justify-center items-center gap-2' >
-                <img className='w-[22px] object-contain' src={logoC} alt='logoc' />
+                {/* <img className='w-[22px] object-contain' src={logoC} alt='logoc' /> */}
                 <span>{smallText}</span>
               </motion.p>
             )
@@ -146,7 +146,7 @@ function HeaderText({text , smallText , isCenter , issmallNeed=true}) {
                 delay:0.25
               }}
               className='text-primaryCM font-bold text-[16px] custom-flex justify-start gap-2' >
-              <img className='w-[22px] object-contain' src={logoC} alt='logoc' />
+              {/* <img className='w-[22px] object-contain' src={logoC} alt='logoc' /> */}
               <span>{smallText}</span>
             </motion.p>
           )

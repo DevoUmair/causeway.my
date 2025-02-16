@@ -113,8 +113,8 @@ function Nav({page}) {
     }
 
   return (
-   <div className='w-full fixed top-0 left-0 right-0 z-[500]' >
-        <div className={`custom-flex  gap-2 !justify-between custom-container glass-bg  glass-bg-active p-[20px] mt-3 rounded-md`} >
+   <div className='w-full fixed top-0 left-0 right-0 z-[500] ' >
+        <div className={`custom-flex shadow-lg gap-2 !justify-between custom-container  glass-bg-active p-[20px] mt-3 rounded-md`} >
             <img src={`${logo}`} className='object-contain w-[180px] md:w-[200px]' />
             <div onMouseLeave={navLeaveMouse} className='custom-flex !justify-end gap-4' >
                 <div className='custom-flex relative  hidden xxl:flex gap-10 !justify-end  py-3 px-4' >
@@ -141,7 +141,7 @@ function Nav({page}) {
 }
 
 const TabCurosr = ({postion}) => (
-  <motion.p animate={postion} className='absolute left-[9px] mix-blend-exclusion z-0 h-11 bg-black rounded-full pointer-events-none w-[83.85px]' > </motion.p>
+  <motion.p animate={postion} className='absolute left-[9px] mix-blend-exclusion z-0 h-11 bg-secondaryCM rounded-full pointer-events-none w-[83.85px]' > </motion.p>
 )
 
 const Tab = ({page , name , to , icon , setPostion}) => {

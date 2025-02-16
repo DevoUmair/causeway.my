@@ -59,13 +59,13 @@ function App() {
           <HowIt />
           <Looking />
           <CMGallery />
-          <CarType />
+          {/* <CarType /> */}
           <FreqQuestion />
           <Services />
           <Reviews />
           <Trust />
           <FreqAllQuestion />
-          <Calculator />
+          {/* <Calculator /> */}
           <Contact /> 
           <Blogs />
           <Cursor />

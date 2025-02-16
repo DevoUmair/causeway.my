@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../../assets/logo/logoC.png'
+import logo from '../../../assets/logo/logo-black.png'
 import './SideBar.css'
 import { RxCross2 } from 'react-icons/rx'
 import { MdAccessTime, MdMail} from 'react-icons/md'
@@ -23,7 +23,7 @@ function SideBar({page}) {
   return (
     <div className={`sidebar shadow-xl px-[20px] py-[25px] block xxl:hidden custom-trans ${sideBarActive && 'sidebar-active'}`} >
         <div className='flex justify-between items-center' >
-            <img src={logo} className='w-[50px] object-contain' />
+            <img src={logo} className='w-[170px] object-contain' />
             <RxCross2 onClick={handleSideBar} size={35} color='#811311' className='cursor-pointer' />
         </div>
 
