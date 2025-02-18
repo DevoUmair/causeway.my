@@ -53,9 +53,9 @@ function FreqQuestion() {
   return (
     <div ref={myRef} className='bg-lightBgCm mt-[80px] rounded-2xl px-[20px] xlg:px-[40px] py-[100px] custom-container custom-flex  flex-col xlg:flex-row justify-between gap-4' >
         <div className='basis-[48%] w-full  mx-auto relative' >
-            <Plx parallaxData={parallaxData} className='absolute z-20 top-[30%] translate-y-[-50%]' >
+            {/* <Plx parallaxData={parallaxData} className='absolute z-20 top-[30%] translate-y-[-50%]' >
                 <img src={vehi} alt='vehi' className='w-[600px] object-contain' />
-            </Plx>
+            </Plx> */}
             <div className='w-[110%] lg:w-[90%] xl:w-[80%] mx-auto  flex justify-center items-center' >
               <img src= {frq01} alt='freq-01' className='freq-image translate-y-[25px] '/>
               <img src= {frq02} alt='freq-01' className='freq-image translate-x-[-40px] translate-y-[-25px]'/>

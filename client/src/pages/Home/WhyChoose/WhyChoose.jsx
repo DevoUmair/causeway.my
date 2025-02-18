@@ -19,9 +19,9 @@ function WhyChoose() {
     const parallaxData = [
         {
             start: height  - 500,
-            end:height + 100,
+            end: window.innerWidth < 1150 ? height + 500 : height,
             easing : "linear",
-            duration:5,
+            duration:10,
             properties: [
               {
                 startValue : 1500,

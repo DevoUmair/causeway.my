@@ -64,7 +64,7 @@ function Banner() {
             <div className='bannerImage' 
                         style={{
                             backgroundImage:`url(${bg01})`,
-                            animation: 'zoomAnimation 5s ease-in-out',
+                            // animation: 'zoomAnimation 5s ease-in-out',
                         }}
             ></div>
         {/* {

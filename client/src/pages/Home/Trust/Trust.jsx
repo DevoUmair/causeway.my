@@ -8,6 +8,8 @@ import img01 from '../../../assets/trues/emirates.svg'
 import img02 from '../../../assets/trues/forebes.svg'
 import img03 from '../../../assets/trues/skydive.svg'
 import img04 from '../../../assets/trues/virtuzone.svg'
+import img05 from '../../../assets/trues/myTukar.png'
+import img06 from '../../../assets/trues/allianz.png'
 
 import { IoIosStar } from 'react-icons/io'
 
@@ -21,7 +23,7 @@ function Trust() {
                 <p className='text-[17px] text-ptextCM' >#1 car rental company in Malaysia on Google</p>
             </div>
             <div className='basis-[100%] w-full xlg:basis-[60%] lg:basis-[50%] bg-white  rounded-xl custom-box-shadow flex justify-between items-center flex-col xsm:flex-row' >
-                <div className='basis-[100%] xsm:basis-[50%] flex px-[10px] xl:px-[20px] py-[20px] justify-center items-center w-full gap-3 flex-col custom-border-bottom xsm:custom-border-right' >
+                {/* <div className='basis-[100%] xsm:basis-[50%] flex px-[10px] xl:px-[20px] py-[20px] justify-center items-center w-full gap-3 flex-col custom-border-bottom xsm:custom-border-right' >
                     <img src={trsutPilot} alt='trust' className='w-[130px] object-contain' />
                     <div className='flex justify-center items-center gap-3 w-full' >
                         <h3 className='font-semibold text-[20px]' >4.7</h3>
@@ -34,8 +36,8 @@ function Trust() {
                         </div>
                         <p className='text-[17px] text-ptextCM' >83</p>
                     </div>
-                </div>
-                <div className='basis-[100%] xsm:basis-[50%] flex px-[10px] xl:px-[20px] py-[20px] justify-center items-center w-full gap-3 flex-col custom-border-right' >
+                </div> */}
+                <div className='flex px-[10px] xl:px-[20px] py-[20px] justify-center items-center w-full gap-3 flex-col' >
                     <img src={google} alt='trust' className='w-[180px] object-contain' />
                     <div className='flex justify-center items-center gap-3 w-full' >
                         <h3 className='font-semibold text-[20px]' >4.7</h3>
@@ -57,13 +59,9 @@ function Trust() {
                 <h3 className='text-[23px] sm:text-[25px] lg:text-[30px] font-bold' >Official Partners With</h3>
             </div>
             <div className='basis-[100%] w-full lg:basis-[67%] flex justify-between items-center gap-2' >
-                <div className='flex justify-between items-center flex-col md:flex-row gap-2 basis-[50%]' >
-                    <img src={img01} className='basis-[50%] w-full h-[100px] object-cover rounded-xl'  />
-                    <img src={img02} className='basis-[50%] w-full h-[100px] object-cover rounded-xl'  />
-                </div>
-                <div className='flex justify-between items-center gap-2 flex-col md:flex-row basis-[50%]' >
-                    <img src={img03} className='basis-[50%] w-full h-[100px] object-cover rounded-xl'  />
-                    <img src={img04} className='basis-[50%] w-full h-[100px] object-cover rounded-xl'  />
+                <div className='flex justify-between items-center flex-col md:flex-row gap-2 basis-[100%]' >
+                    <img src={img05} className='basis-[50%] bg-black w-full h-[130px] object-cover rounded-xl'  />
+                    <img src={img06} className='basis-[50%] w-full h-[130px] object-cover rounded-xl'  />
                 </div>
             </div>
         </div>
